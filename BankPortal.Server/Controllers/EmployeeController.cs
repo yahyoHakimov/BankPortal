@@ -1,62 +1,73 @@
 ﻿using Application.Interfaces;
+using Application.Services;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankPortal.API.Controllers
 {
+    [Authorize] // Authorize the entire controller or individual actions
     [ApiController]
     [Route("api/[controller]")]
     public class EmployeesController : ControllerBase
     {
-        private readonly IEmployeeService _employeeService;
-
-        public EmployeesController(IEmployeeService employeeService)
-        {
-            _employeeService = employeeService;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetEmployeeById(int id)
-        {
-            var employee = await _employeeService.GetEmployeeByIdAsync(id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
-            return Ok(employee);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAllEmployees()
-        {
-            var employees = await _employeeService.GetAllEmployeesAsync();
-            return Ok(employees);
-        }
-
+        [Authorize(Roles = "Admin, HRAdmin")]
         [HttpPost]
-        public async Task<IActionResult> CreateEmployee(Employee employee)
+        public async Task<IActionResult> CreateEmployee(EmployeeDto employee)
         {
-            await _employeeService.CreateEmployeeAsync(employee);
-            return CreatedAtAction(nameof(GetEmployeeById), new { id = employee.EmployeeID }, employee);
-        }
+            // Call the application service to create an employee
+            var result = await _employeeService.CreateEmployeeAsync(employee);
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEmployee(int id, Employee employee)
-        {
-            if (id != employee.EmployeeID)
+            if (result.Success)
             {
-                return BadRequest();
+                return Ok(result);
             }
-            await _employeeService.UpdateEmployeeAsync(employee);
-            return NoContent();
+
+            return BadRequest(result.Message);
         }
 
+        [Authorize(Roles = "Admin, Manager")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateEmployee(int id, EmployeeDto employee)
+        {
+            var result = await _employeeService.UpdateEmployeeAsync(id, employee);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
+        }
+
+        [Authorize(Roles = "Admin, HRAdmin, Manager")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
-            await _employeeService.DeleteEmployeeAsync(id);
-            return NoContent();
-        }
-    }
+            var result = await _employeeService.DeleteEmployeeAsync(id);
 
-}
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
+        }
+
+        [Authorize(Roles = "Admin, HRAdmin, Manager, Employee")]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEmployee(int id)
+        {
+            var employee = await _employeeService.GetEmployeeByIdAsync(id);
+
+            if (employee != null)
+            {
+                return Ok(employee);
+            }
+
+            return NotFound();
+        }
+
+        // Other controller actions
+
+    }
