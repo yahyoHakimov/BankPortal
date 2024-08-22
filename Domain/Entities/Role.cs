@@ -1,23 +1,21 @@
-﻿using System;
+﻿using Domain.Entities.BankPortal.Domain.Entities;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    namespace BankPortal.Domain.Entities
+    public class UserRole
     {
-        public class Role
-        {
-            public int RoleID { get; set; }
-            public string RoleName { get; set; }
-            public DateTime CreatedAt { get; set; }
-            public DateTime UpdatedAt { get; set; }
+        public int UserID { get; set; }
+        public int RoleID { get; set; }
 
-            // Navigation Property
-            public virtual ICollection<UserRole> UserRoles { get; set; }
-        }
+        // Navigation Properties
+        public virtual User User { get; set; }
+        public virtual Role Role { get; set; }
     }
 
 }
