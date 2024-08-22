@@ -25,5 +25,7 @@ namespace Domain.Entities
         public virtual Department Department { get; set; }
         public virtual ICollection<Request> Requests { get; set; }
         public virtual ICollection<Announcement> Announcements { get; set; }
+        public virtual ICollection<Department> ManagedDepartments { get; set; }
+
     }
 }
