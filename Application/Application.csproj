@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <PackageReference Include="Carbon.WebApplication" Version="4.5.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>
