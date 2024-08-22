@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Role
+    public class Announcement
     {
-        public int RoleID { get; set; }
-        public string RoleName { get; set; }
+        public int AnnouncementID { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public int EmployeeID { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
         // Navigation Property
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }
