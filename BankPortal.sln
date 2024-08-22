@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankPortal.Server", "BankPortal.Server\BankPortal.Server.csproj", "{E6C383E0-C8ED-47DD-B623-2747A762FF14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankPortal.API", "BankPortal.Server\BankPortal.API.csproj", "{E6C383E0-C8ED-47DD-B623-2747A762FF14}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "bankportal.client", "bankportal.client\bankportal.client.esproj", "{A8D18298-95CD-4807-9A72-665D1BA04026}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "BankPortal.Client", "bankportal.client\BankPortal.Client.esproj", "{A8D18298-95CD-4807-9A72-665D1BA04026}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{4531DDA6-E3D0-4F22-B453-4F751B87746D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{29E9FB90-51C9-4E5C-8164-81F443C380A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{0F3B2123-DB3F-4944-98DA-E51933B639BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +29,18 @@ Global
 		{A8D18298-95CD-4807-9A72-665D1BA04026}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8D18298-95CD-4807-9A72-665D1BA04026}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8D18298-95CD-4807-9A72-665D1BA04026}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4531DDA6-E3D0-4F22-B453-4F751B87746D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4531DDA6-E3D0-4F22-B453-4F751B87746D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4531DDA6-E3D0-4F22-B453-4F751B87746D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4531DDA6-E3D0-4F22-B453-4F751B87746D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E9FB90-51C9-4E5C-8164-81F443C380A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E9FB90-51C9-4E5C-8164-81F443C380A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E9FB90-51C9-4E5C-8164-81F443C380A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E9FB90-51C9-4E5C-8164-81F443C380A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F3B2123-DB3F-4944-98DA-E51933B639BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F3B2123-DB3F-4944-98DA-E51933B639BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F3B2123-DB3F-4944-98DA-E51933B639BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F3B2123-DB3F-4944-98DA-E51933B639BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
