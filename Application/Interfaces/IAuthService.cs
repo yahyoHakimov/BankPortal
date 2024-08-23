@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs.Role
+namespace Application.Interfaces
 {
-    public class CreateRoleDto
+    public interface IAuthService
     {
-        public string RoleName { get; set; }
+        string Authenticate(string email, string password);
     }
 }

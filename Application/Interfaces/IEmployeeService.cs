@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.DTOs.Employee;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace Application.Interfaces
 {
     public interface IEmployeeService
     {
-        Task<Employee> GetEmployeeByIdAsync(int id);
-        Task<IEnumerable<Employee>> GetAllEmployeesAsync();
-        Task CreateEmployeeAsync(Employee employee);
-        Task UpdateEmployeeAsync(Employee employee);
-        Task DeleteEmployeeAsync(int id);
+        Task<EmployeeDto> GetEmployeeByIdAsync(int id);
+        Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync();
+        Task<(bool Success, string Message)> AddEmployeeAsync(CreateEmployeeDto employeeDto);
+        Task<(bool Success, string Message)> UpdateEmployeeAsync(int id, UpdateEmployeeDto employeeDto);
+        Task<(bool Success, string Message)> DeleteEmployeeAsync(int id);
     }
 
 }

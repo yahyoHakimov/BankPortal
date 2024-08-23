@@ -1,6 +1,6 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs.Employee;
+using Application.Interfaces;
 using Application.Services;
-using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,12 +11,17 @@ namespace BankPortal.API.Controllers
     [Route("api/[controller]")]
     public class EmployeesController : ControllerBase
     {
+        private readonly IEmployeeService _employeeService;
+        public EmployeesController(IEmployeeService employeeService)
+        {
+            _employeeService = employeeService;
+        }
         [Authorize(Roles = "Admin, HRAdmin")]
         [HttpPost]
-        public async Task<IActionResult> CreateEmployee(EmployeeDto employee)
+        public async Task<IActionResult> CreateEmployee(CreateEmployeeDto employee)
         {
             // Call the application service to create an employee
-            var result = await _employeeService.CreateEmployeeAsync(employee);
+            var result = await _employeeService.AddEmployeeAsync(employee);
 
             if (result.Success)
             {
@@ -28,7 +33,7 @@ namespace BankPortal.API.Controllers
 
         [Authorize(Roles = "Admin, Manager")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEmployee(int id, EmployeeDto employee)
+        public async Task<IActionResult> UpdateEmployee(int id, UpdateEmployeeDto employee)
         {
             var result = await _employeeService.UpdateEmployeeAsync(id, employee);
 
@@ -71,3 +76,4 @@ namespace BankPortal.API.Controllers
         // Other controller actions
 
     }
+}

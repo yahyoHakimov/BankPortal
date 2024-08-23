@@ -18,6 +18,7 @@ namespace Infrastructure
         public DbSet<Department> Departments { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<ExternalMeeting> ExternalMeetings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

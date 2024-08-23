@@ -10,5 +10,7 @@ namespace Domain.Interfaces
     public interface IEmployeeRepository : IRepository<Employee>
     {
         Task<IEnumerable<Employee>> GetEmployeesByDepartmentAsync(int departmentId);
+        Task<Employee> GetByEmailAsync(string email);
+        Task SaveChangesAsync();
     }
 }
